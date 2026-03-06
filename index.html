@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>OTIMIZAÇÃO @davi.santxs7</title>
+    <style>
+        :root {
+            --primary: #ff0000;
+            --glass: rgba(15, 15, 15, 0.95);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        body { 
+            margin: 0; padding: 0; background: #000; 
+            font-family: -apple-system, system-ui, sans-serif; color: white;
+            display: flex; justify-content: center; min-height: 100vh; overflow-x: hidden;
+        }
+
+        .bg-blur {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.7), #000), 
+                        url('https://i.pinimg.com/736x/7b/ed/33/7bed33a53ffcc96a9b5de063c098c0bd.jpg');
+            background-size: cover; background-position: center;
+            z-index: -1; filter: blur(15px); transform: scale(1.1);
+        }
+
+        .container { width: 100%; max-width: 360px; padding: 120px 20px 40px; box-sizing: border-box; }
+
+        .app-card {
+            background: var(--glass); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            border-radius: 40px; border: 1px solid var(--border);
+            padding: 65px 25px 35px; text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8); position: relative;
+        }
+
+        .profile-avatar {
+            width: 130px; height: 130px; position: absolute; top: -75px; left: 50%;
+            transform: translateX(-50%); border-radius: 50%;
+            background: url('https://i.pinimg.com/736x/7b/ed/33/7bed33a53ffcc96a9b5de063c098c0bd.jpg');
+            background-size: cover; background-position: center;
+            border: 3px solid var(--primary); box-shadow: 0 0 30px var(--primary); z-index: 10;
+        }
+
+        h1 { margin: 10px 0 5px; font-size: 26px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
+        .dev-tag { color: #888; font-size: 14px; margin-bottom: 30px; display: block; }
+
+        /* ESTILO DAS OPÇÕES (SWITCH IGUAL À IMAGEM) */
+        .item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+            text-align: left;
+        }
+        .item:last-child { border-bottom: none; }
+        
+        .info b { display: block; font-size: 15px; color: #fff; }
+        .info span { font-size: 11px; color: #666; }
+
+        /* SWITCH IPHONE STYLE */
+        .switch { position: relative; width: 44px; height: 24px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #333; transition: .4s; border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute; content: ""; height: 18px; width: 18px;
+            left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%;
+        }
+        input:checked + .slider { background-color: var(--primary); }
+        input:checked + .slider:before { transform: translateX(20px); }
+
+        .btn-inject {
+            width: 100%; padding: 22px; background: var(--primary);
+            color: white; border: none; border-radius: 22px;
+            font-weight: 900; font-size: 16px; margin-top: 25px;
+            box-shadow: 0 10px 30px rgba(255,0,0,0.3);
+            position: relative; overflow: hidden;
+        }
+
+        .progress-bar { position: absolute; left: 0; top: 0; height: 100%; background: rgba(0,0,0,0.2); width: 0%; }
+
+        .status-badge {
+            background: rgba(0, 255, 100, 0.1); color: #00ff64;
+            padding: 5px 12px; border-radius: 100px; font-size: 10px;
+            font-weight: 800; display: inline-block; margin-bottom: 15px;
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <div class="bg-blur"></div>
+
+    <div class="container">
+        <div id="login" class="app-card">
+            <div class="profile-avatar"></div>
+            <h1>LOGIN DO SISTEMA</h1>
+            <span class="dev-tag">Acesso Restrito @davi.santxs7</span>
+            <input type="password" id="key" placeholder="Insira sua Licença" style="width:100%; padding:20px; border-radius:15px; border:1px solid #333; background:#000; color:white; text-align:center; box-sizing:border-box; margin-bottom:15px; outline:none;">
+            <button class="btn-inject" onclick="acessar()">AUTENTICAR ACESSO</button>
+        </div>
+
+        <div id="panel" class="app-card hidden">
+            <div class="profile-avatar"></div>
+            <h1>OTIMIZAÇÃO</h1>
+            <span class="dev-tag">Painel de Performance v5.0</span>
+
+            <div class="status-badge">● SISTEMA PROTEGIDO</div>
+
+            <div class="item">
+                <div class="info"><b>Reduzir Recuo</b><span>Calibração de DPI dinâmica</span></div>
+                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+            <div class="item">
+                <div class="info"><b>Input Lag</b><span>Prioridade de processo RAM</span></div>
+                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+            <div class="item">
+                <div class="info"><b>Touch Response</b><span>Latência de toque 1ms</span></div>
+                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+
+            <button class="btn-inject" onclick="injetar(this)">
+                <div class="progress-bar" id="bar"></div>
+                <span id="txt" style="position:relative; z-index:2;">APLICAR OTIMIZAÇÃO</span>
+            </button>
+            <p style="font-size:10px; color:#444; margin-top:20px; font-weight:800;">DEVELOPED BY @DAVI.SANTXS7</p>
+        </div>
+    </div>
+
+    <script>
+        function acessar() {
+            if(document.getElementById('key').value === 'zz') {
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('panel').classList.remove('hidden');
+            } else { alert('Chave incorreta!'); }
+        }
+
+        function injetar(btn) {
+            const bar = document.getElementById('bar');
+            const txt = document.getElementById('txt');
+            let p = 0;
+            btn.disabled = true;
+            const int = setInterval(() => {
+                p++;
+                bar.style.width = p + "%";
+                txt.innerText = "APLICANDO... " + p + "%";
+                if(p >= 100) {
+                    clearInterval(int);
+                    txt.innerText = "OTIMIZADO COM SUCESSO!";
+                    btn.style.background = "#00ff64";
+                }
+            }, 50);
+        }
+    </script>
+</body>
+</html>
